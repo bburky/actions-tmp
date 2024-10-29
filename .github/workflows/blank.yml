@@ -17,10 +17,10 @@ jobs:
             sleep 60
           fi
 
-          if [ "$flavor" = registry1 ]
-          then
-            exit 1
-          fi
+          # if [ "$flavor" = registry1 ]
+          # then
+          #   exit 1
+          # fi
         env:
           type: ${{ matrix.type }}
           flavor: ${{ matrix.flavor }}
