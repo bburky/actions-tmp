@@ -12,15 +12,15 @@ jobs:
         flavor: [upstream, registry1, unicorn]
     steps:
       - run: |
+          if [ "$flavor" = registry1 ]
+          then
+            exit 1
+          fi
+
           if [ "$type" = install ]
           then 
             sleep 60
           fi
-
-          # if [ "$flavor" = registry1 ]
-          # then
-          #   exit 1
-          # fi
         env:
           type: ${{ matrix.type }}
           flavor: ${{ matrix.flavor }}
