@@ -1,0 +1,36 @@
+name: Test
+
+on: push
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: true
+      matrix:
+        type: [install, upgrade]
+        flavor: [upstream, registry1, unicorn]
+    steps:
+      - run: |
+          if [ "$install" = install ]
+          do 
+            sleep 60
+          fi
+
+          if [ "$flavor" = registry1 ]
+          do
+            exit 1
+          fi
+        env:
+          install: ${{ matrix.install }}
+          upgrade: ${{ matrix.upgrade }}
+
+  summary :
+    runs-on: ubuntu-latest
+    needs:
+      - validate
+    if: ${{ always() }}
+    steps:
+      - run: echo "$matrix"
+        env:
+          matrix: ${{ toJSON(needs.validate) }}
