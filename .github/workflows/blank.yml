@@ -12,7 +12,7 @@ jobs:
         flavor: [upstream, registry1, unicorn]
     steps:
       - run: |
-          if [ "$install" = install ]
+          if [ "$type" = install ]
           then 
             sleep 60
           fi
@@ -22,8 +22,8 @@ jobs:
             exit 1
           fi
         env:
-          install: ${{ matrix.install }}
-          upgrade: ${{ matrix.upgrade }}
+          type: ${{ matrix.type }}
+          flavor: ${{ matrix.flavor }}
 
   summary :
     runs-on: ubuntu-latest
