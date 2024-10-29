@@ -13,12 +13,12 @@ jobs:
     steps:
       - run: |
           if [ "$install" = install ]
-          do 
+          then 
             sleep 60
           fi
 
           if [ "$flavor" = registry1 ]
-          do
+          then
             exit 1
           fi
         env:
